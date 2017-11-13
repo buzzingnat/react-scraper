@@ -1,0 +1,9 @@
+.toggle-notes-btn {
+	color: #33d;
+	top: 50%;
+	left: 50%;
+	transform: translate(0, 50%);
+	position: relative;
+	display: block;
+	font-size: 3em;
+}

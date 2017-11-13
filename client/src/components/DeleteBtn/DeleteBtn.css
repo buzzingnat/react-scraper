@@ -1,0 +1,9 @@
+.delete-btn {
+	color: #e74944;
+	top: 50%;
+	left: 50%;
+	transform: translate(0, 50%);
+	position: relative;
+	display: block;
+	font-size: 3em;
+}

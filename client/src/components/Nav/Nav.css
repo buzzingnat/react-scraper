@@ -1,0 +1,19 @@
+.bg-primary {
+	background: #33f;
+	border: solid thin #006;
+}
+
+.bg-primary .navbar-brand:hover,
+.bg-primary .navbar-brand:active {
+	background: #006;
+}
+
+.bg-primary .navbar-toggle {
+	border: solid thin #006;
+}
+
+.bg-primary .navbar-toggle:hover,
+.bg-primary .navbar-toggle:active {
+	border: solid thin #fff;
+	background: #006;
+}

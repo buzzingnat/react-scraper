@@ -1,0 +1,9 @@
+.new-note-form {
+	width: 100%;
+	min-height: 5em;
+}
+
+.new-note-form input, .new-note-form textarea {
+	width: 100%;
+	padding: .25em .5em;
+}
