@@ -20,7 +20,8 @@
     "nodemon": "^1.11.0"
   },
   "scripts": {
-    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\"",
     "client": "node scripts/start-client.js",
     "build": "react-scripts build",
     "seed": "node scripts/seedDB.js",

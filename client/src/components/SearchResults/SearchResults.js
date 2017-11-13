@@ -1,22 +1,14 @@
 import React from "react";
 import "./SearchResults.css";
-import API from "../../utils/API";
 import { Row, Col } from "../../components/Grid";
 import SaveBtn from "../../components/SaveBtn";
 
 const SearchResults = props => {
-  var saveArticle = (input) => {
-    const data = {
-    	title: input.title,
-    	image: input.image,
-    	href: input.externalLink
-    };
-    API.saveArticle(data)
-	    .then((result) => console.log(`saved result succesfully`, result))
-	    .catch(err => console.log(`ERROR:`, err));
-  };
 
   return (<ul className="list-group search-results">
+	<button onClick={() => {
+	    return ;
+	}}>Cancle</button>
     {props.results ? props.results.map(result =>
       <li key={result.href} className="list-group-item">
 	      <Row>
@@ -31,7 +23,7 @@ const SearchResults = props => {
 	          </a>
 	        </Col>
 	        <Col size="xs-2">
-	          <SaveBtn onClick={() => saveArticle(result)} />
+	          <SaveBtn onClick={() => props.saveArticle(result)} />
 	        </Col>
 	      </Row>
       </li>

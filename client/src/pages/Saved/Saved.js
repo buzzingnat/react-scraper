@@ -7,7 +7,6 @@ import API from "../../utils/API";
 
 class Saved extends Component {
   state = {
-    articles: [],
     newNote: {
       title: '',
       author: '',
@@ -17,26 +16,18 @@ class Saved extends Component {
   };
   // When this component mounts, grab all saved articles in database
   componentDidMount() {
-    this.loadArticles();
-  }
-
-  loadArticles = () => {
-    API.getArticles()
-      .then(res => {
-        this.setState({ articles: res.data });
-      })
-      .catch(err => console.log(err));
+    this.props.loadArticles();
   }
 
   deleteArticle = id => {
     API.deleteArticle(id)
-      .then(res => this.loadArticles())
+      .then(res => this.props.loadArticles())
       .catch(err => console.log(err));
   }
 
   deleteNote = id => {
     API.deleteNote(id)
-      .then(res => this.loadArticles())
+      .then(res => this.props.loadArticles())
       .catch(err => console.log(err));
   }
 
@@ -44,7 +35,7 @@ class Saved extends Component {
     API.saveNote(noteData)
       .then(res => {
         console.log(`response`, res);
-        this.loadArticles();
+        this.props.loadArticles();
         const newNote = {title: '', author: '', content: '', parentArticle: ''}
         this.setState({newNote})
       })
@@ -89,16 +80,16 @@ class Saved extends Component {
   render() {
     // b/c the loading is async, check that data exists before displaying it
     // can use this space to show a loading image instead of "null"
-    // console.log(`articles:`, this.state.articles);
+    // console.log(`articles:`, this.props.articles);
     return (
       <Container fluid>
         <Row>
-          <Jumbotron>
-              <h1>Saved Patterns</h1>
-            </Jumbotron>
-            {this.state.articles.length ? (
+            {this.props.articles.length ? (
               <List>
-                {this.state.articles.map(article => (
+
+            <hr />
+                <h1 className="text-center">Saved Patterns</h1>
+                {this.props.articles.map(article => (
                   <Article
                     article={article}
                     deleteArticle={this.deleteArticle}

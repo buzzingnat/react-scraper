@@ -10,6 +10,7 @@ class Search extends Component {
     patterns: [],
     results: [],
     error: "",
+    itemToSave: {},
     // TODO: split item titles on spaces to make a
     // set of unique keywords, then use those to search
     // for an array of matching items with the search/select button
@@ -36,24 +37,50 @@ class Search extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    var matchedItem = this.state.patterns.find(
+    const matchedItem = this.state.patterns.find(
       (item) => item.title === this.state.search
     );
-    matchedItem ? this.setState({results: [matchedItem]}) : null;
+    matchedItem ? this.setState({results: [matchedItem], search: ""}) : null;
   };
+
+  saveArticle = input => {
+    const itemToSave = {
+      title: input.title,
+      image: input.image,
+      href: input.externalLink
+    };
+    this.setState(
+      {itemToSave}, () => {
+        API.saveArticle(this.state.itemToSave)
+          .then((res) => {
+            this.props.loadArticles();
+            this.setState({
+              itemToSave: {},
+              results: []
+            });
+
+            console.log(`saved result succesfully`, res);
+          })
+          .catch(err => console.log(`ERROR:`, err));
+      });
+  }
 
   render() {
     return (
-      <Container style={{ minHeight: "80%" }}>
-        <h1 className="text-center">Search for a Pattern!</h1>
+      <Container style={{ minHeight: "70%" }}>
+        <h2 className="text-center" style={{ marginTop: ".2em" }}>Search for a Pattern!</h2>
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           patterns={this.state.patterns}
         />
+        {this.state.results[0] ?
         <SearchResults
           results={this.state.results}
+          itemToSave={this.state.itemToSave}
+          saveArticle={this.saveArticle}
         />
+        : null}
       </Container>
     );
   }
