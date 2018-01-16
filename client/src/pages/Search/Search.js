@@ -43,6 +43,10 @@ class Search extends Component {
     matchedItem ? this.setState({results: [matchedItem], search: ""}) : null;
   };
 
+  cancelSearch = () => {
+    this.setState({ search: "" });
+  };
+
   saveArticle = input => {
     const itemToSave = {
       title: input.title,

@@ -10,27 +10,29 @@ const Article = ({article, deleteArticle, saveNote, toggleNoteEditor, newNote, h
   const formatDate = string => new Date(string).toLocaleDateString();
   article.date = formatDate(article.date);
   return (
-    <Col size="md-6">
+    <Col size="md-12">
       <ListItem>
       <Row>
-        <Col size="xs-8" className="itemInfo">
-          <a target="_blank" href={article.href}>
-              <img
-                src={article.image}
-                alt={article.title}
-                height="150"
-              />
-              <Row>
-              <h3>{article.title}</h3>
-              <h3><small>saved {article.date}</small></h3>
-              </Row>
-          </a>
-        </Col>
-        <Col size="xs-2">
-          <DeleteBtn onClick={() => deleteArticle(article._id)} />
-          {newNote.parentArticle !== article._id ?
-          <AddNoteBtn onClick={() => toggleNoteEditor(article._id)} />
-          : null}
+        <a target="_blank" href={article.href} className="itemInfoLink">
+          <Col size="sm-4" className="itemInfoImg">
+            <img
+              src={article.image}
+              alt={article.title}
+              height="200"
+            />
+          </Col>
+          <Col size="sm-5" className="itemInfoText">
+            <h3>{article.title}</h3>
+            <h3><small>saved {article.date}</small></h3>
+          </Col>
+        </a>
+        <Col size="sm-3">
+          <div className="articleButtonContainer">
+            <DeleteBtn onClick={() => deleteArticle(article._id)} />
+            {newNote.parentArticle !== article._id ?
+            <AddNoteBtn onClick={() => toggleNoteEditor(article._id)} />
+            : null}
+          </div>
         </Col>
       </Row>
       {newNote.parentArticle === article._id ?

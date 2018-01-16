@@ -6,9 +6,8 @@ import SaveBtn from "../../components/SaveBtn";
 const SearchResults = props => {
 
   return (<ul className="list-group search-results">
-	<button onClick={() => {
-	    return ;
-	}}>Cancle</button>
+	<button onClick={() => {props.cancelSearch()
+	}}>Cancel</button>
     {props.results ? props.results.map(result =>
       <li key={result.href} className="list-group-item">
 	      <Row>

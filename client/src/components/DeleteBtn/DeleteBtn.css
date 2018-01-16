@@ -1,9 +1,24 @@
+.delete-btn:after {
+    content: "";
+    display: inline-block;
+    height: .75em;
+    width: .75em;
+    border: #666 solid 1px;
+    left: -.65em;
+    position: relative;
+}
+
+.delete-btn:before {
+    content: "delete";
+    font-size: .45em;
+    width: 3em;
+    display: inline-block;
+    position: relative;
+}
+
 .delete-btn {
-	color: #e74944;
-	top: 50%;
-	left: 50%;
-	transform: translate(0, 50%);
-	position: relative;
-	display: block;
-	font-size: 3em;
+    color: #e74944;
+    top: .5em;
+    position: relative;
+    font-size: 3em;
 }

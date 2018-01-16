@@ -7,3 +7,25 @@
 	width: 100%;
 	padding: .25em .5em;
 }
+
+.itemInfoLink {
+	text-align: center;
+}
+
+.itemInfoLink h3 {
+    position: relative;
+    top: 20px;
+}
+
+.articleButtonContainer {
+	text-align: center;
+	position: relative;
+	max-width: 200px;
+	margin: 0 auto;
+}
+
+@media (max-width: 764px) {
+	.articleButtonContainer {
+		max-width: 400px;
+	}
+}
